@@ -21,14 +21,21 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from huggingface_hub import login
 from PIL import Image
 from tqdm import tqdm
-from vllm import LLM, SamplingParams
 import torch  # Import torch to detect GPUs
 import torch.nn.functional as F
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    AutoProcessor
-)
+# Local-model backends are optional (install the `local` extra); API models work without them.
+try:
+    from vllm import LLM, SamplingParams
+except ImportError:
+    LLM = SamplingParams = None
+try:
+    from transformers import (
+        AutoTokenizer,
+        AutoModelForCausalLM,
+        AutoProcessor
+    )
+except ImportError:
+    AutoTokenizer = AutoModelForCausalLM = AutoProcessor = None
 from litellm import acompletion as litellm_acompletion
 
 

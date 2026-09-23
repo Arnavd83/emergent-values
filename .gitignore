@@ -1,0 +1,6 @@
+# API keys - prefer environment variables; never commit key files
+utility_analysis/api_keys/*.txt
+
+# Python bytecode
+__pycache__/
+*.py[cod]

@@ -1,0 +1,41 @@
+[project]
+name = "emergent-values"
+version = "0.0.0"
+description = "Utility Engineering (Mazeika et al., 2025) - packaged fork of centerforaisafety/emergent-values"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.45",
+    "fireworks-ai>=0.15",
+    "google-generativeai>=0.8",
+    "huggingface-hub>=0.26",
+    "inflect>=7.3",
+    "litellm>=1.61",
+    "networkx>=3.3",
+    "numpy>=2.0",
+    "openai>=1.63",
+    "pandas>=2.2",
+    "pillow>=11.0",
+    "protobuf>=5.29",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "scikit-learn>=1.6",
+    "scipy>=1.15",
+    "torch>=2.5",
+    "tqdm>=4.67",
+]
+
+[project.optional-dependencies]
+# Open-weight model inference. vllm only ships Linux wheels.
+local = [
+    "accelerate>=1.1",
+    "transformers>=4.46",
+    "vllm>=0.6.6; sys_platform == 'linux'",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["utility_analysis/compute_utilities"]
